@@ -12,7 +12,6 @@ import {
   update,
   child,
 } from "firebase/database";
-import { AsyncStorage } from "react-native";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -31,9 +30,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const authfirebase = auth;
 const getauth = authfirebase.getAuth();
-// const getDataItems = ref(getDatabase(), `${await AsyncStorage.getItem("nameDB")}/items/`);
-// const getTokensItems = ref(getDatabase(), `${await AsyncStorage.getItem("nameDB")}/Tokens/`);
-
 async function getDataItems(nameDB) {
   let getDataItems;
   getDataItems = ref(getDatabase(), `${nameDB}/items/`);
