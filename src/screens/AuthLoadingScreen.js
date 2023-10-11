@@ -21,7 +21,8 @@ const Class = (props) => {
         `${Device.modelName} ${Device.deviceName}`,
         Token
       );
-      con.addSwitchIot(nameDB, {Room1: 0})
+      const data = { Room1: 0, Room2: 0, Room3: 0 };
+      con.addSwitchIot(nameDB, data);
       return;
     }
     navigation.navigate("Register");
