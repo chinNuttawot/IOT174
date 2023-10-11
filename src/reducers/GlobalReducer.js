@@ -16,8 +16,10 @@ const initial_state = {
       Darkblue: 'rgba(34, 139, 34, 0.7)',
       DarkblueV2: '#006400',
       DarkblueV3: 'rgba(34, 139, 34, 0.2)',
+      DarkblueV4: 'rgba(34, 139, 34, 0.1)',
     },
   },
+  Colors_main: ["#017b01", "#006400"],
   colors_Orange: ["#017b01", "#006400"],
   styleViewAuth: [
     {

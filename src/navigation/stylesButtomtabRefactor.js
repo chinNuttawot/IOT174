@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: theme.LIGHT_GREEN_COLOR,
+    backgroundColor: theme.LIGHT_ORANGE_COLOR,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

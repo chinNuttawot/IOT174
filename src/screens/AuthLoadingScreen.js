@@ -21,6 +21,7 @@ const Class = (props) => {
         `${Device.modelName} ${Device.deviceName}`,
         Token
       );
+      con.addSwitchIot(nameDB, {Room1: 0})
       return;
     }
     navigation.navigate("Register");
@@ -35,7 +36,7 @@ const Class = (props) => {
         <View style={styleViewAuth[0]}>
           <View style={styleViewAuth[1]}>
             <CustomButtom
-              Openfunction={() => run()}
+              Openfunction={run}
               font_size={font_size_XL}
               asset_colors={asset.colors.White}
               colors_Orange={colors_Orange}

@@ -27,6 +27,7 @@ const theme = {
   LIGHT_GREEN_COLOR_3: "rgb(36, 189, 33)",
   LIGHT_GREEN_COLOR_4: "rgb(217, 255, 240)",
   LIGHT_GREEN_COLOR_5: "#b8d5b7",
+  LIGHT_GREEN_COLOR_6: "rgba(34, 139, 34, 0.2)",
   RED_COLOR: "rgb(187, 41, 12)",
   LIGHT_RED_COLOR: "rgb(255,17,17)",
   LIGHT_RED_COLOR_1: "rgb(254, 220, 221)",

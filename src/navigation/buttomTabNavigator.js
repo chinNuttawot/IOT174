@@ -6,14 +6,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/AntDesign";
 import { connect, useSelector } from "react-redux";
 import HomeScreen from "../screens/HomeScreen";
-import OtherScreen from "../screens/OtherScreen";
-import OtherAddData from "../screens/OtherAddDataScreen";
-import EditDataScreen from "../screens/EditDataScreen";
-import IOTPage from "../screens/IOTPage";
 import { CurvedBottomBar } from "react-native-curved-bottom-bar";
 import styles from "./stylesButtomtabRefactor";
 import theme from "../core/theme.style";
-
+import IOTScreen from "../screens/IOTScreen";
 const MainStack = createNativeStackNavigator();
 function HomeStackScreen({ navigation, goBack }) {
   return (
@@ -21,10 +17,7 @@ function HomeStackScreen({ navigation, goBack }) {
       <MainStack.Navigator screenOptions={{ headerShown: false }}>
         <MainStack.Screen name="ButtomTab" component={ButtomTab} />
         <MainStack.Screen name="Home" component={HomeScreen} />
-        <MainStack.Screen name="EditData" component={EditDataScreen} />
-        <MainStack.Screen name="otherMain" component={OtherScreen} />
-        <MainStack.Screen name="AddData" component={OtherAddData} />
-        <MainStack.Screen name="IOT" component={IOTPage} />
+        <MainStack.Screen name="IOT" component={IOTScreen} />
       </MainStack.Navigator>
     </NavigationContainer>
   );
@@ -32,17 +25,17 @@ function HomeStackScreen({ navigation, goBack }) {
 
 const Tab = createBottomTabNavigator();
 function ButtomTab(props) {
-  const _renderIcon = (routeName: string, selectedTab: string) => {
+  const _renderIcon = (routeName, selectedTab) => {
     let icon = "";
     let text = "";
     switch (routeName) {
-      case "ของใช้ในบ้าน":
+      case "บ้านของฉัน":
         icon = "home";
-        text = "ของใช้ในบ้าน";
+        text = "บ้านของฉัน";
         break;
-      case "อื่นๆ":
+      case "ตั้งค่า":
         icon = "setting";
-        text = "อื่นๆ";
+        text = "ตั้งค่า";
         break;
     }
 
@@ -74,7 +67,7 @@ function ButtomTab(props) {
       </>
     );
   };
-  const renderTabBar = ({ routeName, selectedTab, navigate }: any) => {
+  const renderTabBar = ({ routeName, selectedTab, navigate }) => {
     return (
       <TouchableOpacity
         onPress={() => navigate(routeName)}
@@ -96,7 +89,7 @@ function ButtomTab(props) {
       strokeColor={theme.LIGHT_GREEN_COLOR_2}
       height={70}
       circleWidth={60}
-      bgColor={theme.LIGHT_GREEN_COLOR_5}
+      bgColor={theme.LIGHT_GREEN_COLOR_6}
       initialRouteName="Dashboard"
       borderTopLeftRight
       renderCircle={({ selectedTab, navigate }) => (
@@ -107,10 +100,9 @@ function ButtomTab(props) {
               justifyContent: "center",
             }}
             onPress={() => {
-              props.navigation.navigate("IOT", { Namepage: "IOT" });
+              props.navigation.navigate("IOT", { namePage: "IOT" });
             }}
           >
-            {/* <Ionicons name={"setting"} color={theme.WHITE_COLOR} size={45} /> */}
             <Text
               style={{ color: theme.WHITE_COLOR, fontSize: theme.FONT_SIZE_L }}
             >
@@ -122,7 +114,7 @@ function ButtomTab(props) {
       tabBar={renderTabBar}
     >
       <Tab.Screen
-        name="ของใช้ในบ้าน"
+        name="บ้านของฉัน"
         position="LEFT"
         options={({ navigation }) => ({
           headerShown: false,
@@ -130,12 +122,12 @@ function ButtomTab(props) {
         component={HomeScreen}
       />
       <Tab.Screen
-        name="อื่นๆ"
+        name="ตั้งค่า"
         position="RIGHT"
         options={({ navigation }) => ({
           headerShown: false,
         })}
-        component={OtherScreen}
+        component={HomeScreen}
       />
     </CurvedBottomBar.Navigator>
   );

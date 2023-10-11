@@ -23,10 +23,11 @@ export default function App() {
 
   useEffect(() => {
     registerForPushNotificationsAsync().then(async (token) => {
-      console.log("token ===>", token);
       setExpoPushToken(token);
       if (Device.isDevice) {
         await AsyncStorage.setItem("tokenExpo", token);
+      }else{
+        await AsyncStorage.setItem("tokenExpo", "Simulator");
       }
     });
 

@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
-import React, { Component, Fragment } from "react";
-import { initializeApp } from "firebase/app";
 import * as auth from "firebase/auth";
+import { initializeApp } from "firebase/app";
+import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
 import {
   getDatabase,
   ref,
@@ -21,6 +21,7 @@ import {
 const firebaseConfig = {
   apiKey: "AIzaSyAJs3cjGWyWsVEHK0WTR5BVZrYT3DuI-9c",
   authDomain: "checkstock-3c215.firebaseapp.com",
+  databaseURL: "https://checkstock-3c215-default-rtdb.firebaseio.com",
   projectId: "checkstock-3c215",
   storageBucket: "checkstock-3c215.appspot.com",
   messagingSenderId: "1074861387072",
@@ -29,7 +30,9 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const authfirebase = auth;
-const getauth = authfirebase.getAuth();
+const getauth = authfirebase.initializeAuth(app, {
+  persistence: authfirebase.getReactNativePersistence(ReactNativeAsyncStorage),
+});
 async function getDataItems(nameDB) {
   let getDataItems;
   getDataItems = ref(getDatabase(), `${nameDB}/items/`);
@@ -45,6 +48,12 @@ async function getTokensItems(nameDB) {
 async function addTokenStore(nameDB, user, data) {
   const db = getDatabase();
   const reference = ref(db, `${nameDB}/Tokens/` + user);
+  set(reference, data);
+}
+
+async function addSwitchIot(nameDB, data) {
+  const db = getDatabase();
+  const reference = ref(db, `${nameDB}/IOT/`);
   set(reference, data);
 }
 
@@ -81,6 +90,7 @@ export {
   app,
   authfirebase,
   getauth,
+  addSwitchIot,
   updateDataStore,
   addTokenStore,
   onValue,
