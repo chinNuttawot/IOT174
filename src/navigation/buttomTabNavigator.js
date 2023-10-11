@@ -10,6 +10,10 @@ import { CurvedBottomBar } from "react-native-curved-bottom-bar";
 import styles from "./stylesButtomtabRefactor";
 import theme from "../core/theme.style";
 import IOTScreen from "../screens/IOTScreen";
+import SettingScreen from "../screens/SettingScreen";
+
+
+
 const MainStack = createNativeStackNavigator();
 function HomeStackScreen({ navigation, goBack }) {
   return (
@@ -18,6 +22,7 @@ function HomeStackScreen({ navigation, goBack }) {
         <MainStack.Screen name="ButtomTab" component={ButtomTab} />
         <MainStack.Screen name="Home" component={HomeScreen} />
         <MainStack.Screen name="IOT" component={IOTScreen} />
+        <MainStack.Screen name="setting" component={SettingScreen} />
       </MainStack.Navigator>
     </NavigationContainer>
   );
@@ -127,7 +132,7 @@ function ButtomTab(props) {
         options={({ navigation }) => ({
           headerShown: false,
         })}
-        component={HomeScreen}
+        component={SettingScreen}
       />
     </CurvedBottomBar.Navigator>
   );
