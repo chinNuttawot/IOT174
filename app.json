@@ -21,7 +21,6 @@
     },
     "android": {
       "package": "com.Housestock.houseStock",
-      "useNextNotificationsApi": true,
       "googleServicesFile": "./google-services.json",
       "versionCode": 1,
       "adaptiveIcon": {
