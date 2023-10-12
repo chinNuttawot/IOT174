@@ -14,7 +14,7 @@
       }
     },
     "production": {
-      "node": "16.18.1"
+      "node": "18.16.0"
     }
   },
   "submit": {
