@@ -5,12 +5,18 @@ import { ImageBackground, View } from "react-native";
 import * as Device from "expo-device";
 import CustomButtom from "../components/CustomButtom";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect } from "react";
 
 const Class = (props) => {
   const { route, navigation } = props;
   const { asset, styleViewAuth, font_size_XL, colors_Orange } = useSelector(
     (state) => state.GlobalReducer
   );
+
+  useEffect(() => {
+    run();
+  }, []);
+
   const run = async () => {
     let nameDB = await AsyncStorage.getItem("nameDB");
     if (nameDB) {
@@ -21,8 +27,6 @@ const Class = (props) => {
         `${Device.modelName} ${Device.deviceName}`,
         Token
       );
-      const data = { Room1: 0, Room2: 0, Room3: 0 };
-      con.addSwitchIot(nameDB, data);
       return;
     }
     navigation.navigate("Register");
@@ -33,18 +37,7 @@ const Class = (props) => {
         style={{ flex: 1 }}
         source={asset.images.splash}
         resizeMode="contain"
-      >
-        <View style={styleViewAuth[0]}>
-          <View style={styleViewAuth[1]}>
-            <CustomButtom
-              Openfunction={run}
-              font_size={font_size_XL}
-              asset_colors={asset.colors.White}
-              colors_Orange={colors_Orange}
-            />
-          </View>
-        </View>
-      </ImageBackground>
+      />
     </Fragment>
   );
 };

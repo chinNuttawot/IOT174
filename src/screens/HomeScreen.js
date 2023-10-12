@@ -18,7 +18,7 @@ const Home = (props) => {
   // getDataFireBase = () => {
   //   setState({ loader_Visible: true }, async () => {
   //     const nameDB = await AsyncStorage.getItem("nameDB");
-  //     const isgetDataItems = await getDataItems(nameDB);
+      // const isgetDataItems = await getDataItems(nameDB);
   //     const isgetTokensItems = await getTokensItems(nameDB);
   //     await onValue(isgetDataItems, async (res) => {
   //       await setState({ data: [], dataKeyUpdate: [] });

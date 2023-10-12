@@ -11,6 +11,7 @@ import {
   push,
   update,
   child,
+  get,
 } from "firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -33,43 +34,68 @@ const authfirebase = auth;
 const getauth = authfirebase.initializeAuth(app, {
   persistence: authfirebase.getReactNativePersistence(ReactNativeAsyncStorage),
 });
-async function getDataItems(nameDB) {
-  let getDataItems;
-  getDataItems = ref(getDatabase(), `${nameDB}/items/`);
-  return getDataItems;
-}
-
-async function getTokensItems(nameDB) {
-  let getTokensItems;
-  getTokensItems = ref(getDatabase(), `${nameDB}/Tokens/`);
-  return getTokensItems;
-}
-
-async function addTokenStore(nameDB, user, data) {
-  const db = getDatabase();
-  const reference = ref(db, `${nameDB}/Tokens/` + user);
-  set(reference, data);
-}
-
-async function addSwitchIot(nameDB, data) {
-  const db = getDatabase();
-  const reference = ref(db, `${nameDB}/IOT/`);
-  set(reference, data);
-}
-
-async function addDataStore(nameDB, data) {
-  const db = getDatabase();
-  const reference = ref(db, `${nameDB}/items/`);
-  // set(reference, data);
-  push(reference, data);
-}
-
-async function addSwitchStore(nameDB, data) {
-  const db = getDatabase();
-  const reference = ref(db, `${nameDB}/Switchs/`);
-  // set(reference, data);
-  push(reference, data);
-}
+const getSwitchIot = async (nameDB) => {
+  let data = [];
+  return new Promise(async (resolve, reject) => {
+    try {
+      const dbRef = ref(getDatabase());
+      const res = await get(child(dbRef, `${nameDB}/IOT/`));
+      res.forEach((v, k) => {
+        data.push(v.val());
+      });
+      resolve(data);
+    } catch (error) {
+      reject(null);
+    }
+  });
+};
+const getTokensItems = async (nameDB) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let getTokensItems;
+      getTokensItems = ref(getDatabase(), `${nameDB}/Tokens/`);
+      resolve(getTokensItems);
+    } catch (error) {
+      reject(null);
+    }
+  });
+};
+const addTokenStore = async (nameDB, user, data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const db = getDatabase();
+      const reference = ref(db, `${nameDB}/Tokens/` + user);
+      set(reference, data);
+      resolve(true);
+    } catch (error) {
+      reject(false);
+    }
+  });
+};
+const addSwitchIot = async (nameDB, data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const db = getDatabase();
+      const reference = ref(db, `${nameDB}/IOT/`);
+      set(reference, data);
+      resolve(true);
+    } catch (error) {
+      reject(false);
+    }
+  });
+};
+const updateSwitchIot = async (nameDB, updates) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const db = getDatabase();
+      const reference = ref(db, `${nameDB}/IOT/`);
+      set(reference, updates)
+      resolve(true);
+    } catch (error) {
+      reject(false);
+    }
+  });
+};
 
 async function delDataStore(nameDB, user) {
   console.log("user ====>", user);
@@ -78,25 +104,15 @@ async function delDataStore(nameDB, user) {
   remove(reference);
 }
 
-async function updateDataStore(nameDB, data, newPostKey) {
-  const db = getDatabase();
-  const reference = ref(db, `${nameDB}/items/`);
-  let updates = {};
-  updates[newPostKey] = data;
-  update(reference, updates);
-}
-
 export {
   app,
   authfirebase,
   getauth,
   addSwitchIot,
-  updateDataStore,
   addTokenStore,
   onValue,
-  addDataStore,
-  addSwitchStore,
-  getDataItems,
+  getSwitchIot,
+  updateSwitchIot,
   getTokensItems,
   delDataStore,
 };
