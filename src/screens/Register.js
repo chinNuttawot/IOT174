@@ -28,12 +28,7 @@ class Register extends Component {
   run = async () => {
     await AsyncStorage.setItem("nameDB", this.state.isnameDB.toString());
     const nameDB = await AsyncStorage.getItem("nameDB");
-    const Token = await AsyncStorage.getItem("tokenExpo");
-    await con.addTokenStore(
-      nameDB,
-      `${Device.modelName} ${Device.deviceName}`,
-      Token
-    );
+    await con.dateLogin(nameDB, `${Device.modelName} ${Device.deviceName}`);
     await this.props.navigation.navigate("MainMenu");
   };
 

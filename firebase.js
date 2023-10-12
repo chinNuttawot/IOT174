@@ -13,6 +13,7 @@ import {
   child,
   get,
 } from "firebase/database";
+import moment from "moment";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -60,12 +61,14 @@ const getTokensItems = async (nameDB) => {
     }
   });
 };
-const addTokenStore = async (nameDB, user, data) => {
+const dateLogin = async (nameDB, user) => {
+  const date = moment().format("DD/MM/YYYY HH:mm:ss");
   return new Promise(async (resolve, reject) => {
     try {
       const db = getDatabase();
-      const reference = ref(db, `${nameDB}/Tokens/` + user);
-      set(reference, data);
+      const reference = ref(db, `Login/${nameDB}`);
+      const data = { user: user, dateTime: date };
+      push(reference, data);
       resolve(true);
     } catch (error) {
       reject(false);
@@ -89,7 +92,7 @@ const updateSwitchIot = async (nameDB, updates) => {
     try {
       const db = getDatabase();
       const reference = ref(db, `${nameDB}/IOT/`);
-      set(reference, updates)
+      set(reference, updates);
       resolve(true);
     } catch (error) {
       reject(false);
@@ -109,7 +112,7 @@ export {
   authfirebase,
   getauth,
   addSwitchIot,
-  addTokenStore,
+  dateLogin,
   onValue,
   getSwitchIot,
   updateSwitchIot,

@@ -20,7 +20,6 @@ const SettingScreen = (props) => {
         title={params?.namePage || "ตั้งต่า"}
         {...props}
       />
-
       <View style={{alignSelf: "center", justifyContent: "center", height: 400}}>
         <Text>ยังไม่พร้อมใช้งาน</Text>
       </View>

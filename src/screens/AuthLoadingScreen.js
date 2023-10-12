@@ -21,12 +21,7 @@ const Class = (props) => {
     let nameDB = await AsyncStorage.getItem("nameDB");
     if (nameDB) {
       navigation.navigate("MainMenu");
-      const Token = await AsyncStorage.getItem("tokenExpo");
-      await con.addTokenStore(
-        nameDB,
-        `${Device.modelName} ${Device.deviceName}`,
-        Token
-      );
+      await con.dateLogin(nameDB, `${Device.modelName} ${Device.deviceName}`);
       return;
     }
     navigation.navigate("Register");

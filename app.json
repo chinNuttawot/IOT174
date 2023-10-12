@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "IOT174",
-    "slug": "IOT174",
+    "name": "IOTHome",
+    "slug": "IOTHome",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

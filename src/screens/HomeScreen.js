@@ -2,6 +2,7 @@ import React, { Component, Fragment, useEffect, useState } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 import CustomHeader from "../components/CustomHeader";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Text, View } from "react-native";
 
 const Home = (props) => {
   const dispatch = useDispatch();
@@ -57,6 +58,9 @@ const Home = (props) => {
   return (
     <Fragment>
       <CustomHeader title={`บ้าน : ${title}`} />
+      <View style={{alignSelf: "center", justifyContent: "center", height: 400}}>
+        <Text>ยังไม่พร้อมใช้งาน</Text>
+      </View>
     </Fragment>
   );
 };
