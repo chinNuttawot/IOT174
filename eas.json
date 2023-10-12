@@ -5,7 +5,6 @@
   "build": {
     "qa": {
       "distribution": "internal",
-      "developmentClient": true,
       "node": "18.16.0",
       "android": {
         "buildType": "apk"
