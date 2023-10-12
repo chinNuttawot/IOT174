@@ -13,9 +13,10 @@ export default function CustomHeader(props) {
   const { title, isGoBack, navigation, actionHeader } = props;
   const { asset } = useSelector((state) => state.GlobalReducer);
   const { colors } = asset;
- 
+
   return (
     <SafeAreaView style={{ backgroundColor: colors.DarkblueV3 }}>
+      <StatusBar backgroundColor={colors.DarkblueV3} barStyle="light-content" />
       <View
         style={{
           flexDirection: "row",
